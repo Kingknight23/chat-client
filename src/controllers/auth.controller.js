@@ -28,6 +28,12 @@ const register = async (
     }
 };
 
+const logout = async (req, res) => {
+    // JWT is stateless. The frontend clears its stored token, and the server
+    // rejects the token once its one-hour expiry has passed.
+    res.status(200).json({ message: "Logged out successfully" });
+};
+
 const login = async (
     req,
     res,
@@ -53,5 +59,6 @@ const login = async (
 
 export {
     register,
-    login
+    login,
+    logout
 };

@@ -5,11 +5,14 @@ import AddFriend from "../friends/AddFriend.jsx";
 import CreateGroup from "../groups/CreateGroup.jsx";
 import { searchFriends, openDirectConversation } from "../../api/api.js";
 import { useChat } from "../../context/ChatContext.jsx";
-import {
-    getCurrentUser
-} from "../../utils/auth.js";
+import {getCurrentUser} from "../../utils/auth.js";
 
 const Sidebar = ({ conversations, selectedConversation, onSelectConversation }) => {
+
+    const {
+        connectionStatus
+    } = useChat();
+
     const { setConversations } = useChat();
     const [menuOpen, setMenuOpen] = useState(false);
     const [modal, setModal] = useState(null);
@@ -18,10 +21,6 @@ const Sidebar = ({ conversations, selectedConversation, onSelectConversation }) 
     const [searching, setSearching] = useState(false);
     const [searchError, setSearchError] = useState("");
     const menuRef = useRef(null);
-
-    const {
-        connectionStatus
-    } = useChat();
 
     const closeModal = () => {
         setModal(null);
@@ -115,45 +114,42 @@ const Sidebar = ({ conversations, selectedConversation, onSelectConversation }) 
         closeModal();
     };
 
+    const connected = connectionStatus === "connected";
     const user = getCurrentUser();
-
-    const connected =
-        connectionStatus === "connected";
 
     return (
         <aside className="sidebar">
             <div className="sidebar-title">
                 <div className="sidebar-title-row">
                     <button className="current-user profile-trigger" onClick={()=>setProfileOpen(true)} title="Edit profile">
-
                     <div className="current-user-avatar">
-                        {user?.profilePicture ? <img src={user.profilePicture} alt="" /> : (user?.username?.charAt(0)?.toUpperCase() || "U")}
+                    {user?.profilePicture ? <img src={user.profilePicture} alt="" /> : (user?.username?.charAt(0)?.toUpperCase() || "U")}
                     </div>
 
                     <div className="current-user-info">
 
-                        <strong>
-                            {user?.username ||
-                                "User"}
-                        </strong>
+                    <strong>
+                    {user?.username ||
+                    "User"}
+                    </strong>
 
-                        <span
-                            className={
-                                connected
-                                    ? "status connected"
-                                    : "status"
-                            }
-                        >
-                            <span className="status-dot" />
+                    <span
+                    className={
+                    connected
+                    ? "status connected"
+                    : "status"
+                    }
+                    >
+                    <span className="status-dot" />
 
-                            {connected
-                                ? "Connected"
-                                : "Connecting..."}
-                        </span>
+                    {connected
+                    ? "Connected"
+                    : "Connecting..."}
+                    </span>
 
                     </div>
 
-                </button>
+                    </button>
                     <div className="plus-menu-anchor" ref={menuRef}>
                         <button className="plus-button" onClick={() => setMenuOpen((v) => !v)} aria-label="Create or add" aria-expanded={menuOpen}>
                             +

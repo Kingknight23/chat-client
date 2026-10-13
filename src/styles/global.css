@@ -83,8 +83,7 @@ button:disabled {
     color: var(--text-secondary);
 }
 
-
-.primary-button , .secondary-button {
+.primary-button {
     border: none;
 
     border-radius: 10px;
@@ -100,18 +99,8 @@ button:disabled {
     cursor: pointer;
 }
 
-.primary-button:hover  {
+.primary-button:hover {
     background: var(--primary-hover);
-}
-
-.secondary-button {
-   background: var(--surface-alt);
-
-    color: var(--text-primary);
-}
-.secondary-button:hover {
-    
-     background: red;
 }
 
 .app-button {

@@ -5,7 +5,8 @@ import {
 } from "../context/ChatContext.jsx";
 
 import {
-    getCurrentUser
+    getCurrentUser,
+    logout
 } from "../utils/auth.js";
 
 import Sidebar
@@ -51,11 +52,38 @@ const ChatPage = () => {
 
             <header className="dashboard-header">
 
-                
+                {/* <button className="current-user profile-trigger" onClick={()=>setProfileOpen(true)} title="Edit profile">
 
+                    <div className="current-user-avatar">
+                        {user?.profilePicture ? <img src={user.profilePicture} alt="" /> : (user?.username?.charAt(0)?.toUpperCase() || "U")}
+                    </div>
+
+                    <div className="current-user-info">
+
+                        <strong>
+                            {user?.username ||
+                                "User"}
+                        </strong>
+
+                        <span
+                            className={
+                                connected
+                                    ? "status connected"
+                                    : "status"
+                            }
+                        >
+                            <span className="status-dot" />
+
+                            {connected
+                                ? "Connected"
+                                : "Connecting..."}
+                        </span>
+
+                    </div>
+
+                </button> */}
 
                 <div className="dashboard-title">
-
                     <p className="eyebrow">
                         CHAT APPLICATION
                     </p>
@@ -65,8 +93,12 @@ const ChatPage = () => {
                     </h1>
 
                 </div>
-            <button className="settings-trigger" onClick={() => setSettingsOpen(true)} aria-label="Open settings" title="Appearance settings">⚙ <span>Settings</span></button>
 
+
+                <div className="dashboard-title">
+                    <button className="settings-trigger" onClick={() => setSettingsOpen(true)} aria-label="Open settings" title="Appearance settings">⚙ <span>Settings</span></button>
+                    <button className="logout-trigger" onClick={logout} title="Log out of your account" aria-label="Log out">↪ <span>Log out</span></button>
+                </div>
 
             </header>
 

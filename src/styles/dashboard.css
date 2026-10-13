@@ -11,10 +11,7 @@
 
     justify-content: space-between;
 
-    margin-bottom: 0 !important;
-    border-bottom: 1px solid var(--primary) !important;
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
+    margin-bottom: 20px;
 }
 
 .dashboard-header h1 {
@@ -120,8 +117,6 @@
 
 .dashboard-title {
     text-align: right;
-    gap:0 !important;
-    align-items: flex-start !important;
 }
 
 .dashboard-title h1 {
