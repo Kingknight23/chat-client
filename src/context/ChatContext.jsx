@@ -441,8 +441,9 @@ const ChatProvider = ({
         const user = getUser();
         const userId = String(user?.id || user?._id || user?.userId || "");
         if (!conversationId || !userId || !file) throw new Error("A conversation and file are required");
-        const allowed = file.type.startsWith("image/") || file.type.startsWith("audio/") || file.type === "application/pdf";
-        if (!allowed) throw new Error("Choose an image, audio recording, or PDF");
+        const allowedTypes = new Set(["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.oasis.opendocument.text", "text/plain"]);
+        const allowed = file.type.startsWith("image/") || file.type.startsWith("audio/") || allowedTypes.has(file.type) || /\.(doc|docx|odt|txt)$/i.test(file.name);
+        if (!allowed) throw new Error("Choose an image, audio recording, PDF, Word document, ODT, or TXT file");
         if (file.size > 15 * 1024 * 1024) throw new Error("Files must be 15 MB or smaller");
         const attachment = await uploadAttachmentApi(conversationId, file);
         const identity = await ensureIdentityKey(userId);

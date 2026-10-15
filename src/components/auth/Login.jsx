@@ -75,7 +75,7 @@ const Login = ({
             </div>
 
             <p className="eyebrow">
-                CHAT APPLICATION
+                CHAT SPACE
             </p>
 
             <h1>

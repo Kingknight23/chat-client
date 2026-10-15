@@ -24,7 +24,7 @@ const Attachment = ({ attachment }) => {
   }, [attachment.filename, attachment.url, attachment.mimeType]);
   if (attachment.mimeType?.startsWith("image/")) return <div className="attachment-preview">{previewUrl ? <img src={previewUrl} alt={attachment.name || "Image attachment"} onClick={open} /> : "Loading image…"}<button onClick={open}>{attachment.name || "Open image"}</button></div>;
   if (attachment.mimeType?.startsWith("audio/")) return <div className="attachment-file">🎤 {attachment.name}{previewUrl ? <audio controls src={previewUrl}>Audio playback is not supported.</audio> : "Loading audio…"}<button onClick={open}>Download audio</button>{error && <small>{error}</small>}</div>;
-  return <div className="attachment-file">📄 {attachment.name || "PDF document"}<button onClick={open}>Open / download PDF</button>{error && <small>{error}</small>}</div>;
+  return <div className="attachment-file">📄 {attachment.name || "document"}<button onClick={open}>Open / download file</button>{error && <small>{error}</small>}</div>;
 };
 const Message = ({ message, own, isGroup }) => {
   const text = message.payload?.text || message.text || "";
